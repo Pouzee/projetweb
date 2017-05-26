@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>Creation</title>
+  {% block head %}
+  <link rel="stylesheet" href="{{asset('bundles/style.css')}}">
+  {%endblock%}
+  
+  <!-- voir à DL les fonts et les inclure en local ? (perf' - non dépendance à des ressources externes)-->
+   <link href="https://fonts.googleapis.com/css?family=Lato:400|Lora:400i|Metamorphous" rel="stylesheet"> 
+  
+</head>
+<body>
+  <header>
+	<button class="c-hamburger c-hamburger--rot">
+	  <span>toggle menu</span>
+	</button>
+	<nav>
+		<a href="/tournoi">Chercher un tournoi</a>
+		<a href="/tournoi/create">Créer un tournoi</a>
+		<a href="/accueil" ><h1> Magic Tournament </h1> </a>
+		<a href="/tournoi/mestournois">Mes tournois</a>
+		<a href="/logout">Se déconnecter</a>
+		
+	</nav>
+  </header>
+  <section id="illus">
+	<img src="{{asset('bundles/bkgd.jpg')}}" alt="Illustration de l'univers Magic"/> <!-- src : http://www.dudaite.com/i/2017/01/magic-the-gathering-dragon-wallpaper-picture.jpg !-->
+  </section>
+  <section id="main">
+		{{error}}
+		<h2>Créer un tournoi</h2>
+		<div class='form'> 
+			{{error}}
+			<span>{{ form_start(form) }}</span>
+		    <span>{{ form_row(form.nom) }}</span>
+		    <span>{{ form_row(form.format) }}</span>
+		    <span>{{ form_row(form.date) }}</span>
+		    <span>{{ form_row(form.maxUser) }}</span>
+		    <span>{{ form_row(form.description) }}</span>
+		    <input type="submit" value="Creer le tournoi" class="c2"></input>
+			{{ form_end(form) }}
+		</div> 
+  </section>
+  
+  <script type="text/javascript"> <!-- Pour faire fonctionner le burger-->
+	(function() {
+
+	  "use strict";
+
+	  var toggles = document.querySelectorAll(".c-hamburger");
+
+	  for (var i = toggles.length - 1; i >= 0; i--) {
+		var toggle = toggles[i];
+		toggleHandler(toggle);
+	  };
+
+	  function toggleHandler(toggle) {
+		toggle.addEventListener( "click", function(e) {
+		  e.preventDefault();
+		  (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
+		});
+	  }
+
+	})();
+  </script>
+  
+</body>
+</html>
